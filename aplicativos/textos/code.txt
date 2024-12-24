@@ -4,7 +4,7 @@ class Fila {
     this.fila = [];
     this.contador = 0;
   }
-
+qqqqqqqqqq
   entrarNaFila(cliente) {
     this.fila.push({
       cliente: cliente,
