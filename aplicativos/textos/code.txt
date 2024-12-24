@@ -1,0 +1,25 @@
+
+class Fila {
+  constructor() {
+    this.fila = [];
+    this.contador = 0;
+  }
+
+  entrarNaFila(cliente) {
+    this.fila.push({
+      cliente: cliente,
+      numero: ++this.contador
+    });
+    console.log(cliente + " entrou na fila, numero da ordem: " + this.contador);
+  }
+
+  sairDaFila() {
+    var cliente = this.fila.shift();
+    console.log(cliente.cliente + " saiu da fila, numero da ordem: " + cliente.numero);
+  }
+}
+
+var fila = new Fila();
+fila.entrarNaFila("Joao");
+fila.entrarNaFila("Maria");
+fila.entrarNaFila("Pedro");
