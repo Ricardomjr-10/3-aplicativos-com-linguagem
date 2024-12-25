@@ -15,7 +15,7 @@ buttonCalcFixas.addEventListener('click', () => {
     const contas = parseFloat(inputContas.value);
     const totalFixas = aluguel + contas;
     divTotalFixas.textContent = `Total Despesas Fixas: R$${totalFixas.toFixed(2)}`;
-   
+    totalDespesas()
     
 });
 
@@ -36,7 +36,7 @@ buttonCalcVariaveis.addEventListener('click', () => {
     inputValor.value = ''
     const totalVariaveis = despesas.reduce((total, despesa) => total + despesa.valor, 0);
     divTotalVariaveis.textContent = `Total Despesas Variáveis: R$${totalVariaveis.toFixed(2)}`
-   
+    totalDespesas()
 })
 
 const totalDespesas = () => {
@@ -48,4 +48,10 @@ const totalDespesas = () => {
     if (total > 1000) {
         divDicas.textContent = 'Você está gastando muito, considere reduzir despesas não essenciais.';
     }
+}
+
+const previsaoDeGastos = () => {
+    if(despesas.length === 0) return 0
+    const soma = despesas.reduce((acc, valor) => acc + valor, 0)
+    return soma / despesas.length
 }
