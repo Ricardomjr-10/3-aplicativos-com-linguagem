@@ -3,8 +3,8 @@ const buttonCalcVariaveis = document.querySelector('#adicionar-despesa');
 const inputAluguel = document.querySelector('#aluguel');
 const inputContas = document.querySelector('#contas');
 const divTotalFixas = document.querySelector('#total-fixas');
-const inputAlimentacao = document.querySelector('#alimentacao');
-const inputTransporte = document.querySelector('#transporte');
+const inputDescricao = document.querySelector('#descricao');
+const inputValor = document.querySelector('#valor');
 const divTotalVariaveis = document.querySelector('#total-variaveis');
 const ulDespesas = document.querySelector('#lista-despesas');
 const divEconomia = document.querySelector('#economia');
@@ -17,9 +17,20 @@ buttonCalcFixas.addEventListener('click', () => {
     divTotalFixas.textContent = `Total Despesas Fixas: R$${totalFixas.toFixed(2)}`;
 });
 
-buttonCalcVariaveis.addEventListener('click', () => {
-    const alimentacao = parseFloat(inputAlimentacao.value)
-    const transporte = parseFloat(inputTransporte.value)
-    const totalVariaveis = alimentacao + transporte;
+let despesas = [];
+
+buttonCalcVariaveis.addEventListener('click', (e) => {
+   
+    const descricao = inputDescricao.value
+    const valor = parseFloat(inputValor.value)
+    despesas.push({ descricao, valor })
+    ulDespesas.innerHTML = ''
+    despesas.forEach(despesa => {
+        const li = document.createElement('li')
+        li.textContent = `${despesa.descricao}: R$${despesa.valor.toFixed(2)}`
+        ulDespesas.appendChild(li)
+    })
+    
+    const totalVariaveis = despesas.reduce((total, despesa) => total + despesa.valor, 0);
     divTotalVariaveis.textContent = `Total Despesas Variáveis: R$${totalVariaveis.toFixed(2)}`
 })
