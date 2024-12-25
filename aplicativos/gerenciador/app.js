@@ -39,3 +39,13 @@ buttonCalcVariaveis.addEventListener('click', () => {
    
 })
 
+const totalDespesas = () => {
+    const totalFixas = parseFloat(divTotalFixas.textContent.replace('Total Despesas Fixas: R$', ''));
+    const totalVariaveis = parseFloat(divTotalVariaveis.textContent.replace('Total Despesas Variáveis: R$', ''));
+    const total = totalFixas + totalVariaveis;
+    divEconomia.textContent = `Total de despesas: R$${total.toFixed(2)}`;
+    // Exemplo de dica
+    if (total > 1000) {
+        divDicas.textContent = 'Você está gastando muito, considere reduzir despesas não essenciais.';
+    }
+}
