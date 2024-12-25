@@ -15,11 +15,13 @@ buttonCalcFixas.addEventListener('click', () => {
     const contas = parseFloat(inputContas.value);
     const totalFixas = aluguel + contas;
     divTotalFixas.textContent = `Total Despesas Fixas: R$${totalFixas.toFixed(2)}`;
+   
+    
 });
 
 let despesas = [];
 
-buttonCalcVariaveis.addEventListener('click', (e) => {
+buttonCalcVariaveis.addEventListener('click', () => {
    
     const descricao = inputDescricao.value
     const valor = parseFloat(inputValor.value)
@@ -30,7 +32,10 @@ buttonCalcVariaveis.addEventListener('click', (e) => {
         li.textContent = `${despesa.descricao}: R$${despesa.valor.toFixed(2)}`
         ulDespesas.appendChild(li)
     })
-    
+    inputDescricao.value = ''
+    inputValor.value = ''
     const totalVariaveis = despesas.reduce((total, despesa) => total + despesa.valor, 0);
     divTotalVariaveis.textContent = `Total Despesas Variáveis: R$${totalVariaveis.toFixed(2)}`
+   
 })
+
