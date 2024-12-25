@@ -9,6 +9,7 @@ const divTotalVariaveis = document.querySelector('#total-variaveis');
 const ulDespesas = document.querySelector('#lista-despesas');
 const divEconomia = document.querySelector('#economia');
 const divDicas = document.querySelector('#dicas');
+const divPrevisao = document.querySelector('#previsao')
 
 buttonCalcFixas.addEventListener('click', () => {
     const aluguel = parseFloat(inputAluguel.value);
@@ -16,6 +17,7 @@ buttonCalcFixas.addEventListener('click', () => {
     const totalFixas = aluguel + contas;
     divTotalFixas.textContent = `Total Despesas Fixas: R$${totalFixas.toFixed(2)}`;
     totalDespesas()
+    previsaoDeGastos()
     
 });
 
@@ -37,6 +39,7 @@ buttonCalcVariaveis.addEventListener('click', () => {
     const totalVariaveis = despesas.reduce((total, despesa) => total + despesa.valor, 0);
     divTotalVariaveis.textContent = `Total Despesas Variáveis: R$${totalVariaveis.toFixed(2)}`
     totalDespesas()
+    previsaoDeGastos()
 })
 
 const totalDespesas = () => {
@@ -49,9 +52,14 @@ const totalDespesas = () => {
         divDicas.textContent = 'Você está gastando muito, considere reduzir despesas não essenciais.';
     }
 }
-
+let despesa = []
+for (let i = 0; i < despesas.length; i++) {
+     despesa.push(despesas[i].valor)
+    }
 const previsaoDeGastos = () => {
-    if(despesas.length === 0) return 0
-    const soma = despesas.reduce((acc, valor) => acc + valor, 0)
-    return soma / despesas.length
-}
+    if(despesa.length === 0) return 0
+        const soma = despesa.reduce((acc, valor) => acc + valor, 0)
+        const previsao = soma / despesa.length
+        divPrevisao.textContent = `Previsão de gastos com despesas: R$${previsao.toFixed(2)}`
+    }
+    
