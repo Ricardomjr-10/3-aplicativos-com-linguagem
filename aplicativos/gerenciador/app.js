@@ -52,14 +52,12 @@ const totalDespesas = () => {
         divDicas.textContent = 'Você está gastando muito, considere reduzir despesas não essenciais.';
     }
 }
-let despesa = []
-for (let i = 0; i < despesas.length; i++) {
-     despesa.push(despesas[i].valor)
-    }
+
 const previsaoDeGastos = () => {
-    if(despesa.length === 0) return 0
-        const soma = despesa.reduce((acc, valor) => acc + valor, 0)
-        const previsao = soma / despesa.length
+    if(despesas.length === 0) return 0
+        const soma = despesas.reduce((acc, valor) => acc + despesas.valor, 0)
+        const previsao = soma / despesas.length
         divPrevisao.textContent = `Previsão de gastos com despesas: R$${previsao.toFixed(2)}`
     }
+    
     
