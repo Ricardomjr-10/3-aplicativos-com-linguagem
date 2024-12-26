@@ -10,6 +10,15 @@ const ulDespesas = document.querySelector('#lista-despesas');
 const divEconomia = document.querySelector('#economia');
 const divDicas = document.querySelector('#dicas');
 const divPrevisao = document.querySelector('#previsao')
+const rendimento = document.querySelector('#rendimento');
+const buttonAdicionarRendimento = document.querySelector('#adicionar-rendimento');
+const exibirRendimento = document.querySelector('#exibirRendimento');
+
+buttonAdicionarRendimento.addEventListener('click', () => {
+    const rendimentoMensal = parseFloat(rendimento.value);
+    exibirRendimento.textContent = `Rendimento Mensal: R$${rendimentoMensal.toFixed(2)}`;
+
+})
 
 buttonCalcFixas.addEventListener('click', () => {
     const aluguel = parseFloat(inputAluguel.value);
