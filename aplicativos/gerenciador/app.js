@@ -55,7 +55,7 @@ const totalDespesas = () => {
 
 const previsaoDeGastos = () => {
     if(despesas.length === 0) return 0
-        const soma = despesas.reduce((acc, valor) => acc + despesas.valor, 0)
+        const soma = despesas.reduce((acc, despesas) => acc + despesas.valor, 0)
         const previsao = soma / despesas.length
         divPrevisao.textContent = `Previsão de gastos com despesas: R$${previsao.toFixed(2)}`
     }
