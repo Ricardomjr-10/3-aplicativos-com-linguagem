@@ -69,4 +69,7 @@ const previsaoDeGastos = () => {
         divPrevisao.textContent = `Previsão de gastos com despesas: R$${previsao.toFixed(2)}`
     }
     
-    
+    const porcentagem = (despesa, rendimento, div) => {
+        const porcentagem = (despesa / rendimento) * 100;
+        div.textContent = `Porcentagem de gastos com ${despesa}: ${porcentagem.toFixed(2)}%`;
+    }
