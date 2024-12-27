@@ -22,6 +22,9 @@ class Fila {
 
         setTimeout(() => {
             this.sairDaFila()
+            this.gerarRelatorioDeEspera()
+            this.gerarRelatorioDeTempoNoSistema()
+            this.gerarRelatorioDeTaxaDeOcupacao(60)
         }, tempoDeAtendimento * 1000)
     }
     gerarRelatorioDeEspera() {
@@ -55,17 +58,11 @@ class Fila {
 
 let fila = new Fila()
 fila.entarNaFila('joao')
-fila.entarNaFila('calaeb')
-fila.entarNaFila('pedro')
-fila.entarNaFila('gabriel')
 fila.entarNaFila('maria')
-fila.entarNaFila('jose')
+fila.entarNaFila('pedro')
 fila.atenderCliente()
-fila.atenderCliente()
-fila.atenderCliente()
-fila.atenderCliente()
-fila.atenderCliente()
-fila.atenderCliente()
+
+
 
 
 
