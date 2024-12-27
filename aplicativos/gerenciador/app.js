@@ -17,11 +17,13 @@ const porcentoFixas = document.querySelector('#porcentoFixas');
 const porcentoVariaveis = document.querySelector('#porcentoVariaveis');
 
 buttonAdicionarRendimento.addEventListener('click', () => {
+    if (rendimento.value === '') return alert('Por favor, insira um rendimento mensal.');
     const rendimentoMensal = parseFloat(rendimento.value);
     exibirRendimento.textContent = `Rendimento Mensal: R$${rendimentoMensal.toFixed(2)}`;
 })
 
 buttonCalcFixas.addEventListener('click', () => {
+    if (inputAluguel.value === '' || inputContas.value === '') return alert('Por favor, insira os valores de aluguel e contas.');
     const aluguel = parseFloat(inputAluguel.value);
     const contas = parseFloat(inputContas.value);
     const totalFixas = aluguel + contas;
@@ -35,7 +37,7 @@ buttonCalcFixas.addEventListener('click', () => {
 let despesas = [];
 
 buttonCalcVariaveis.addEventListener('click', () => {
-   
+    if (inputDescricao.value === '' || inputValor.value === '') return alert('Por favor, insira a descricao e o valor da despesa.');
     const descricao = inputDescricao.value
     const valor = parseFloat(inputValor.value)
     despesas.push({ descricao, valor })
