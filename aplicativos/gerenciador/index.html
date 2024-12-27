@@ -11,15 +11,15 @@
 
     <div id="rendimentos" class="divs">
         <h2>Rendimento Mensal</h2>
-        <input type="text" id="rendimento" placeholder="Rendimento Mensal">
+        <input class="inputs" type="number" id="rendimento" placeholder="Rendimento Mensal">
         <button id="adicionar-rendimento">Adicionar</button>
         <div id="exibirRendimento"></div>
     </div>
 
     <div id="despesas-fixas" class="divs">
         <h2>Despesas Fixas</h2>
-        <input type="text" id="aluguel" placeholder="Aluguel">
-        <input type="text" id="contas" placeholder="Contas (água, luz, etc.)">
+        <input class="inputs" type="number" id="aluguel" placeholder="Aluguel">
+        <input class="inputs" type="number" id="contas" placeholder="Contas (água, luz, etc.)">
         <button id="calcular-fixas">Calcular</button>
         <div id="total-fixas">Total Despesas Fixas: R$0</div>
         <div id="porcentoFixas"></div>
@@ -27,8 +27,8 @@
 
     <div id="despesas-variaveis" class="divs">
         <h2>Despesas Variáveis</h2>
-        <input type="text" id="descricao" placeholder="Descricao">
-        <input type="text" id="valor" placeholder="Valor">
+        <input class="inputs" type="text" id="descricao" placeholder="Descricao">
+        <input class="inputs" type="number" id="valor" placeholder="Valor">
         <button id="adicionar-despesa">Adicionar Despesa</button>
         <ul id="lista-despesas"></ul>
         <div id="total-variaveis">Total Despesas Variáveis: R$0</div>
