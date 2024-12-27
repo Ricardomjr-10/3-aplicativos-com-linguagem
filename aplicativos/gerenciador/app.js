@@ -61,7 +61,7 @@ const totalDespesas = () => {
     divEconomia.textContent = `Total de despesas: R$${total.toFixed(2)}`;
     // Exemplo de dica
     if (total > 1000) {
-        divDicas.textContent = `você pode criar um orçamento equilibrado seguindo algumas diretrizes.
+        divDicas.textContent = `você pode criar um orçamento equilibrado seguindo algumas diretrizes:
         50% para Necessidades Essenciais: Abrange despesas fixas e indispensáveis para a sua sobrevivência.
         30% para Desejos Pessoais: Inclui gastos variáveis com lazer, hobbies e outras atividades não essenciais.
         20% para Metas Financeiras: Destinado a investimentos, reserva de emergência e pagamento de dívidas.`
