@@ -13,11 +13,12 @@ const divPrevisao = document.querySelector('#previsao')
 const rendimento = document.querySelector('#rendimento');
 const buttonAdicionarRendimento = document.querySelector('#adicionar-rendimento');
 const exibirRendimento = document.querySelector('#exibirRendimento');
+const porcentoFixas = document.querySelector('#porcentoFixas');
+const porcentoVariaveis = document.querySelector('#porcentoVariaveis');
 
 buttonAdicionarRendimento.addEventListener('click', () => {
     const rendimentoMensal = parseFloat(rendimento.value);
     exibirRendimento.textContent = `Rendimento Mensal: R$${rendimentoMensal.toFixed(2)}`;
-
 })
 
 buttonCalcFixas.addEventListener('click', () => {
@@ -27,6 +28,7 @@ buttonCalcFixas.addEventListener('click', () => {
     divTotalFixas.textContent = `Total Despesas Fixas: R$${totalFixas.toFixed(2)}`;
     totalDespesas()
     previsaoDeGastos()
+    porcentagem(totalFixas, porcentoFixas)
     
 });
 
@@ -49,6 +51,7 @@ buttonCalcVariaveis.addEventListener('click', () => {
     divTotalVariaveis.textContent = `Total Despesas Variáveis: R$${totalVariaveis.toFixed(2)}`
     totalDespesas()
     previsaoDeGastos()
+    porcentagem(totalVariaveis, porcentoVariaveis)
 })
 
 const totalDespesas = () => {
@@ -58,7 +61,10 @@ const totalDespesas = () => {
     divEconomia.textContent = `Total de despesas: R$${total.toFixed(2)}`;
     // Exemplo de dica
     if (total > 1000) {
-        divDicas.textContent = 'Você está gastando muito, considere reduzir despesas não essenciais.';
+        divDicas.textContent = `você pode criar um orçamento equilibrado seguindo algumas diretrizes.
+        50% para Necessidades Essenciais: Abrange despesas fixas e indispensáveis para a sua sobrevivência.
+        30% para Desejos Pessoais: Inclui gastos variáveis com lazer, hobbies e outras atividades não essenciais.
+        20% para Metas Financeiras: Destinado a investimentos, reserva de emergência e pagamento de dívidas.`
     }
 }
 
@@ -66,10 +72,11 @@ const previsaoDeGastos = () => {
     if(despesas.length === 0) return 0
         const soma = despesas.reduce((acc, despesas) => acc + despesas.valor, 0)
         const previsao = soma / despesas.length
-        divPrevisao.textContent = `Previsão de gastos com despesas: R$${previsao.toFixed(2)}`
+        divPrevisao.textContent = `Previsão de gastos com despesas variáveis: R$${previsao.toFixed(2)}`
     }
     
-    const porcentagem = (despesa, rendimento, div) => {
-        const porcentagem = (despesa / rendimento) * 100;
-        div.textContent = `Porcentagem de gastos com ${despesa}: ${porcentagem.toFixed(2)}%`;
+    const porcentagem = (despesa, div) => {
+         const rendimentoMensal = parseFloat(rendimento.value);
+        const porcentagem = (despesa / rendimentoMensal) * 100;
+        div.textContent = `Porcentagem de gastos: ${porcentagem.toFixed(2)}%`;
     }
