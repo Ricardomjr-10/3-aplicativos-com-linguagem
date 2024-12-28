@@ -1,0 +1,73 @@
+body {
+    font-family: sans-serif; /* Define uma fonte padrão */
+    margin: 20px; /* Adiciona margem ao redor do corpo */
+    background-color: #f4f4f4; /* Cor de fundo leve */
+    color: #333; /* Cor do texto principal */
+}
+
+h1 {
+    text-align: center; /* Centraliza o título principal */
+    margin-bottom: 30px; /* Adiciona margem abaixo do título */
+    color: #007bff; /* Cor azul para o título */
+}
+
+h2 {
+    margin-top: 20px; /* Espaço entre os títulos de seção */
+    color: #555; /* Cor um pouco mais escura para os subtítulos */
+}
+
+form {
+    background-color: #fff; /* Fundo branco para os formulários */
+    padding: 20px; /* Espaçamento interno nos formulários */
+    border-radius: 8px; /* Bordas arredondadas */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra leve */
+    margin-bottom: 20px; /* Espaço entre os formulários */
+}
+
+label {
+    display: block; /* Labels em bloco para ficarem acima dos inputs */
+    margin-bottom: 5px; /* Espaçamento entre label e input */
+    font-weight: bold; /* Texto em negrito para os labels */
+}
+
+input[type="text"],
+input[type="email"],
+input[type="date"],
+input[type="number"] {
+    width: calc(100% - 12px); /* Largura total menos o padding */
+    padding: 8px; /* Espaçamento interno nos inputs */
+    margin-bottom: 10px; /* Espaçamento entre os inputs */
+    border: 1px solid #ccc; /* Borda cinza clara */
+    border-radius: 4px; /* Bordas arredondadas */
+    box-sizing: border-box; /* Inclui o padding na largura */
+}
+
+button {
+    background-color: #007bff; /* Cor azul para os botões */
+    color: #fff; /* Texto branco nos botões */
+    padding: 10px 15px; /* Espaçamento interno nos botões */
+    border: none; /* Remove a borda padrão */
+    border-radius: 4px; /* Bordas arredondadas */
+    cursor: pointer; /* Cursor de mãozinha ao passar o mouse */
+    transition: background-color 0.3s ease; /* Transição suave na cor de fundo */
+}
+
+button:hover {
+    background-color: #0056b3; /* Cor azul mais escura ao passar o mouse */
+}
+#datasIdeais{
+  margin-top: 20px;
+}
+
+#datasIdeais ul {
+  list-style-type: none; /* Remove os marcadores de lista */
+  padding: 0;
+}
+
+#datasIdeais li {
+  background-color: #fff;
+  padding: 10px;
+  margin-bottom: 5px;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,.1);
+}
