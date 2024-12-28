@@ -16,12 +16,20 @@ app.use(express.static('public')); // Serve arquivos estáticos
 
 
 // Cadastrar usuário
-app.post('/usuarios', (req, res) => { /* ... (mesmo código da resposta anterior) */ });
+app.post('/usuarios', (req, res) => {
+    const { nome, email } = req.body;
+    db.run('INSERT INTO usuarios (nome, email) VALUES (?, ?)', [nome, email], function (err) {
+        if (err) {
+            return res.status(500).json({ error: err.message });
+        }
+        res.json({ id: this.lastID });
+    })
+});
 
 // Criar evento
 app.post('/eventos', (req, res) => {
     const { nome, data, organizador_id } = req.body;
-    db.run('INSERT INTO eventos (nome, data, organizador_id) VALUES (?, ?, ?)', [nome, data, organizador_id], function(err) {
+    db.run('INSERT INTO eventos (nome, data, organizador_id) VALUES (?, ?, ?)', [nome, data, organizador_id], function (err) {
         if (err) { /* ... */ }
         res.json({ id: this.lastID });
     });
@@ -29,31 +37,31 @@ app.post('/eventos', (req, res) => {
 
 // Registrar disponibilidade
 app.post('/disponibilidades', (req, res) => {
-  const { usuario_id, evento_id, data, disponivel } = req.body;
-  db.run(`INSERT OR IGNORE INTO disponibilidades (usuario_id, evento_id, data, disponivel) VALUES (?, ?, ?, ?)`, [usuario_id, evento_id, data, disponivel], function(err) {
-      if (err) { return res.status(500).json({ error: err.message }); }
-      res.json({ message: "Disponibilidade registrada" });
-  });
+    const { usuario_id, evento_id, data, disponivel } = req.body;
+    db.run(`INSERT OR IGNORE INTO disponibilidades (usuario_id, evento_id, data, disponivel) VALUES (?, ?, ?, ?)`, [usuario_id, evento_id, data, disponivel], function (err) {
+        if (err) { return res.status(500).json({ error: err.message }); }
+        res.json({ message: "Disponibilidade registrada" });
+    });
 });
 
 // Listar datas ideais (com lógica mais robusta)
 app.get('/eventos/:id/datas-ideais', (req, res) => {
-  const eventoId = req.params.id;
-  db.all(`SELECT data, COUNT(usuario_id) AS disponiveis
+    const eventoId = req.params.id;
+    db.all(`SELECT data, COUNT(usuario_id) AS disponiveis
           FROM disponibilidades
           WHERE evento_id = ? AND disponivel = 1
           GROUP BY data
           ORDER BY disponiveis DESC`, [eventoId], (err, rows) => {
-      if (err) { /* ... */ }
-      res.json(rows);
-  });
+        if (err) { return res.status(500).json({ error: err.message }); }
+        res.json(rows);
+    });
 });
 
 // Adicionar tarefa
 app.post('/tarefas', (req, res) => {
     const { evento_id, descricao, atribuido_a } = req.body;
-    db.run('INSERT INTO tarefas (evento_id, descricao, atribuido_a) VALUES (?, ?, ?)', [evento_id, descricao, atribuido_a], function(err) {
-      if (err) { return res.status(500).json({ error: err.message }); }
+    db.run('INSERT INTO tarefas (evento_id, descricao, atribuido_a) VALUES (?, ?, ?)', [evento_id, descricao, atribuido_a], function (err) {
+        if (err) { return res.status(500).json({ error: err.message }); }
         res.json({ id: this.lastID });
     });
 });
@@ -87,7 +95,7 @@ cron.schedule('0 0 * * *', () => { // Executa diariamente à meia-noite
                     subject: `Lembrete: ${evento.nome} é amanhã!`,
                     text: `Olá, este é um lembrete de que o evento ${evento.nome} será realizado amanhã, ${evento.data}.`
                 };
-                
+
                 transporter.sendMail(mailOptions, (error, info) => {
                     if (error) {
                         console.log(error);
@@ -100,5 +108,7 @@ cron.schedule('0 0 * * *', () => { // Executa diariamente à meia-noite
     });
 });
 
-app.listen(port, () => { /* ... */ })
+app.listen(port, () => {
+    console.log(`Servidor rodando na porta ${port}`)
+})
 
