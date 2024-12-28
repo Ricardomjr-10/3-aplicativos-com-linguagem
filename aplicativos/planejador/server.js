@@ -100,22 +100,5 @@ cron.schedule('0 0 * * *', () => { // Executa diariamente à meia-noite
     });
 });
 
-app.listen(port, () => { /* ... */ });
-
-// Verifique a consulta SQL que está causando o erro. O erro "near '.'" geralmente indica um problema de sintaxe na consulta SQL, muitas vezes relacionado a um nome de tabela ou coluna malformado.
-
-// Como o código acima usa `db.run` para inserir dados e `db.all` para consultar dados, verifique esses comandos. Em caso de dúvida, revise a consulta SQL específica que está falhando.
-
-// Exemplo de correção para uma consulta SQL malformada usando `db.run`:
-app.post('/corrigirErro', (req, res) => {
-    const { campo1, campo2 } = req.body;
-    db.run('INSERT INTO tabela (campo1, campo2) VALUES (?, ?)', [campo1, campo2], function(err) {
-        if (err) {
-            return res.status(500).json({ error: err.message });
-        }
-        res.json({ id: this.lastID });
-    });
-});
-
-// Verifique se os nomes das tabelas e colunas estão corretos e não possuem caracteres inválidos.
+app.listen(port, () => { /* ... */ })
 
